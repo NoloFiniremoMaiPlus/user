@@ -1,0 +1,155 @@
+@media (max-device-width: 480px) {
+  .onMobileHide {
+    display: none !important;
+  }
+
+  .onMobileLink {
+    font-size: 0.8em !important;
+  }
+  .onMobileInput::placeholder {
+    font-size: 0.7em !important;
+    font-weight: bold;
+    padding-left: 0.1em !important;
+    justify-content: center;
+  }
+  .onMobileInput {
+    width: 25% !important;
+  }
+}
+
+@media (min-device-width: 481px) {
+  .onComputerHide {
+    display: none !important;
+  }
+
+  .onComputerLink {
+    display: block !important;
+    font-size: 1.5em;
+  }
+  .onMobileInput::placeholder {
+    font-size: 1.5em !important;
+    padding-left: 0.5em !important;
+    justify-content: center;
+  }
+}
+
+.header {
+  height: 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #131921;
+  position: sticky;
+  z-index: 100;
+  border: 1px solid blue;
+}
+
+.mainHeader {
+  height: 10%;
+  display: flex;
+  align-items: center;
+  background-color: #131921;
+}
+
+.secondaryHeader {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  border: 1px solid yellow;
+}
+
+.headerLogo {
+  width: 10%;
+  height: 100%;
+  border: 1px solid green;
+  object-fit: contain;
+}
+
+.headerSearchBar {
+  height: 2em;
+  display: flex;
+  flex: 1;
+  padding-left: 5px;
+  padding-right: 5px;
+  position: relative;
+  border: 1px solid green;
+  margin-left: 1em;
+  margin-right: 1em;
+}
+
+.headerSearchBarInput {
+  width: 100%;
+  border: none;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border: 1px solid #cd9042;
+  color: black;
+}
+
+.headerSearchBarInput:focus {
+  outline: none;
+}
+
+.headerSearchBarIcon {
+  width: 15%;
+  height: 100%;
+  border: none;
+  display: flex;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+  color: #131921;
+  background-color: #cd9042;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  position: absolute;
+  right: 0;
+  cursor: pointer;
+}
+
+.headerNav {
+  height: 2em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid green;
+}
+
+.headerNavLinks {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.headerButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  color: white;
+  padding: 0.3em;
+  border: 1px solid red;
+}
+
+.headerShoppingCart {
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+a {
+  display: flex;
+  text-decoration: none;
+  color: white;
+}
+
+a:visited {
+  color: white;
+}
+
+.spacePlease {
+  margin-left: 1em;
+  margin-right: 1em;
+}
