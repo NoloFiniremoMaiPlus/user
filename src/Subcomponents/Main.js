@@ -12,25 +12,47 @@ function Main() {
           alt="banner gradient img"
         />
       </div>
-      <div className="mainRow">
+      <div className="row">
         <Product
           title="Prova 1"
           rating={3}
           price={30}
           image="https://pngimg.com/uploads/gamepad/gamepad_PNG12.png"
         />
-        <Product />
       </div>
-      <div className="mainRow">
-        <Product />
-        <Product />
-        <Product />
-        <Product />
+      <div className="row">
+        <Product
+          title="Prova 1"
+          rating={3}
+          price={30}
+          image="https://pngimg.com/uploads/gamepad/gamepad_PNG12.png"
+        />
+        <Product
+          title="Prova 1"
+          rating={3}
+          price={30}
+          image="https://pngimg.com/uploads/gamepad/gamepad_PNG12.png"
+        />
+        <Product
+          title="Prova 1"
+          rating={3}
+          price={30}
+          image="https://pngimg.com/uploads/gamepad/gamepad_PNG12.png"
+        />
       </div>
-      <div className="mainRow">
-        <Product />
-        <Product />
-        <Product />
+      <div className="row">
+        <Product
+          title="Prova 1"
+          rating={3}
+          price={30}
+          image="https://pngimg.com/uploads/gamepad/gamepad_PNG12.png"
+        />
+        <Product
+          title="Prova 1"
+          rating={3}
+          price={30}
+          image="https://pngimg.com/uploads/gamepad/gamepad_PNG12.png"
+        />
       </div>
     </div>
   );
