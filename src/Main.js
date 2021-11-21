@@ -1,6 +1,6 @@
 import React from "react";
 import "./Main.css";
-import Product from "./Product";
+import Product from "./Subcomponents/Product";
 
 function Main() {
   return (
@@ -14,6 +14,7 @@ function Main() {
       </div>
       <div className="row">
         <Product
+          id="123"
           title="Prova 1"
           rating={3}
           price={30}
@@ -22,18 +23,21 @@ function Main() {
       </div>
       <div className="row">
         <Product
+          id="123"
           title="Prova 1"
           rating={3}
           price={30}
           image="https://pngimg.com/uploads/gamepad/gamepad_PNG12.png"
         />
         <Product
+          id="123"
           title="Prova 1"
           rating={3}
           price={30}
           image="https://pngimg.com/uploads/gamepad/gamepad_PNG12.png"
         />
         <Product
+          id="123"
           title="Prova 1"
           rating={3}
           price={30}
@@ -42,12 +46,14 @@ function Main() {
       </div>
       <div className="row">
         <Product
+          id="123"
           title="Prova 1"
           rating={3}
           price={30}
           image="https://pngimg.com/uploads/gamepad/gamepad_PNG12.png"
         />
         <Product
+          id="123"
           title="Prova 1"
           rating={3}
           price={30}

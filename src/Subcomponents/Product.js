@@ -2,8 +2,26 @@ import React from "react";
 import "./Product.css";
 import StarIcon from "@material-ui/icons/Star";
 import StarBorderIcon from "@material-ui/icons/StarBorder";
+import { useStateValue } from "../StateProvider";
 
-function Product({ title = "", price = 0, rating = 0, image = "" }) {
+function Product({ id = 0, title = "", price = 0, rating = 0, image = "" }) {
+  const [{ cart }, dispatch] = useStateValue();
+
+  const addToCart = () => {
+    //Dispatch the item into the data layer
+    dispatch({
+      type: "ADD_TO_CART",
+      item: {
+        id: id,
+        title: title,
+        image: image,
+        price: price,
+        rating: rating,
+      },
+    });
+    console.log(cart);
+  };
+
   var emptyStars = 5 - rating;
   return (
     <div className="product">
@@ -22,7 +40,7 @@ function Product({ title = "", price = 0, rating = 0, image = "" }) {
           ))}
       </p>
       <img src={image} alt="product" />
-      <button>Add to cart</button>
+      <button onClick={addToCart}>Add to cart</button>
     </div>
   );
 }
