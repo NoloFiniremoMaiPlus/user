@@ -8,6 +8,7 @@
   margin: 0 0.1em 0 0.1em;
   border-radius: 5px;
   border: 1px solid black;
+  height: 4em;
 }
 
 .subtotal > button {
@@ -19,4 +20,11 @@
   margin-top: 10px;
   border-color: #a88734 #9c7e31 #846a29;
   color: #111;
+  font-weight: bold;
+}
+
+p {
+  font-size: 1.2em;
+  margin: 0;
+  padding: 0;
 }

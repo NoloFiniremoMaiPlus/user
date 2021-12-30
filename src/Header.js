@@ -11,7 +11,6 @@ function test() {
 
 function Header() {
   const [{ cart }, dispatch] = useStateValue();
-
   return (
     <div className="header">
       <div className="mainHeader">
@@ -37,15 +36,17 @@ function Header() {
         </div>
         <div className="headerNav">
           <nav className="headerNavLinks onMobileHide">
-            <a href="#" className="headerButton onMobileHide">
-              Sign In
-            </a>
-            <a href="#" className="headerButton onMobileHide">
-              Orders
-            </a>
-            <a href="#" className="headerButton onMobileHide">
-              Favourites
-            </a>
+            <Link to="SignIn">
+              <div href="#" className="headerButton onMobileHide">
+                Sign In
+              </div>
+            </Link>
+            <Link to="/orders">
+              <div className="headerButton onMobileHide">Orders</div>
+            </Link>
+            <Link to="/favourites">
+              <div className="headerButton onMobileHide">Favourites</div>
+            </Link>
           </nav>
           <Link to="/checkout">
             <div className="headerShoppingCart">

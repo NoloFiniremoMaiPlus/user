@@ -1,0 +1,38 @@
+.orders {
+  display: flex;
+  padding: 20px;
+  background-color: #eaeded;
+  height: max-content;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+}
+
+h3 {
+  width: 100%;
+  font-size: 1.5em;
+  margin-right: 10px;
+  padding: 10px;
+}
+
+.ordersTitle {
+  width: 100%;
+  font-size: 2em;
+  margin-right: 10px;
+  padding: 10px;
+  border-bottom: 1px solid lightgray;
+}
+
+.ordersCart {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ordersProducts {
+  display: flex;
+  flex-grow: 1;
+  flex-wrap: wrap;
+}
