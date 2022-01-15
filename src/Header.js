@@ -1,23 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Header.css";
 import SearchIcon from "@material-ui/icons/Search";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import { Link } from "react-router-dom";
 import { useStateValue } from "./StateProvider";
-
-function test() {
-  console.log("ciao diocan");
-}
+import {
+  getToken,
+  getRefreshToken,
+  getExpires,
+  clearLocalStorage,
+  getUser,
+} from "./Auth";
 
 function Header() {
   const [{ cart }, dispatch] = useStateValue();
+  const [user, setUser] = useState(getUser());
+
   return (
     <div className="header">
       <div className="mainHeader">
         <Link to="/" className="headerLink">
           <img
             className="headerLogo"
-            src="http://pngimg.com/uploads/computer_pc/computer_pc_PNG7706.png"
+            src="https://icons.veryicon.com/png/o/object/color-game-icon/game-controller-6.png"
             alt="logo"
           ></img>{" "}
         </Link>
@@ -29,23 +34,33 @@ function Header() {
           />
           <button
             className="headerSearchBarIcon hide-mobile-button"
-            onClick={test}
+            onClick={console.log("clicked")}
           >
             <SearchIcon />
           </button>
         </div>
         <div className="headerNav">
           <nav className="headerNavLinks onMobileHide">
-            <Link to="SignIn">
-              <div href="#" className="headerButton onMobileHide">
-                Sign In
-              </div>
+            {user
+              ? [
+                  <Link to="profile" key="1">
+                    <div href="#" className="headerButton onMobileHide">
+                      {user}
+                    </div>
+                  </Link>,
+                ]
+              : [
+                  <Link to="signIn" key="2">
+                    <div href="#" className="headerButton onMobileHide">
+                      Login
+                    </div>
+                  </Link>,
+                ]}
+            <Link to="/catalogue">
+              <div className="headerButton onMobileHide">Catalogo</div>
             </Link>
             <Link to="/orders">
-              <div className="headerButton onMobileHide">Orders</div>
-            </Link>
-            <Link to="/favourites">
-              <div className="headerButton onMobileHide">Favourites</div>
+              <div className="headerButton onMobileHide">Ordini</div>
             </Link>
           </nav>
           <Link to="/checkout">
@@ -58,15 +73,27 @@ function Header() {
       </div>
       <div className="secondaryHeader">
         <nav className="headerNavLinks onComputerHide">
-          <a href="#" className="headerButton spacePlease">
-            Sign In
-          </a>
-          <a href="#" className="headerButton">
-            Orders
-          </a>
-          <a href="#" className="headerButton spacePlease">
-            Favourites
-          </a>
+          {user
+            ? [
+                <Link to="profile" key="1">
+                  <div href="#" className="headerButton spacePlease">
+                    {user}
+                  </div>
+                </Link>,
+              ]
+            : [
+                <Link to="signIn" key="2">
+                  <div href="#" className="headerButton spacePlease">
+                    Login
+                  </div>
+                </Link>,
+              ]}
+          <Link to="/catalogue" className="headerButton">
+            Catalogo
+          </Link>
+          <Link to="/orders" className="headerButton spacePlease">
+            Ordini
+          </Link>
         </nav>
       </div>
     </div>

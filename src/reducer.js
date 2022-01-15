@@ -1,6 +1,7 @@
 export const initialState = {
   cart: [],
-  user: null,
+  // user: null,
+  // tokens: null,
 };
 
 // Selector
@@ -42,11 +43,14 @@ const reducer = (state, action) => {
         cart: newCart,
       };
 
-    case "SET_USER":
-      return {
-        ...state,
-        user: action.user,
-      };
+    // case "SET_USER_AND_TOKENS":
+    //   console.log(action.user);
+    //   console.log(action.tokens);
+    //   return {
+    //     ...state,
+    //     user: action.user,
+    //     tokens: action.tokens,
+    //   };
 
     default:
       return state;

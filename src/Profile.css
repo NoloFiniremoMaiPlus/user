@@ -1,0 +1,82 @@
+h1 {
+  margin-bottom: 2.5rem;
+}
+
+/* Container */
+#profileContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+/* Name and surname */
+#Anagraphic {
+  display: flex;
+  flex-direction: row;
+  width: 70%;
+}
+
+/* Lables */
+label {
+  font-size: 1.3rem;
+  font-weight: bold;
+  font-family: Calibri;
+}
+
+#names {
+  width: 70%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+/* All the inputs cells */
+.userInfo {
+  margin-top: 0.3rem;
+  margin-bottom: 1.5rem;
+  background-color: #f2f2f2;
+  border: 1px solid #000000;
+  width: 70%;
+  padding: 1rem 0;
+  height: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 1.2rem;
+  border-radius: 0.5rem;
+}
+
+/* final buttons */
+#profileButtons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 70%;
+  margin: 1rem 0;
+}
+
+button {
+  border: 1px solid #000000;
+  font-size: 1.2rem;
+  font-weight: 550;
+  margin: 0.5rem;
+  width: max-content;
+  height: 2.5rem;
+  border-radius: 0.5rem;
+  padding: 0 1em;
+}
+
+/* Final buttons colors */
+#update {
+  background-color: #0e0d0d;
+  color: #258ef0;
+}
+
+#logout {
+  background-color: #0e0d0d;
+  color: rgb(250, 60, 60);
+}
