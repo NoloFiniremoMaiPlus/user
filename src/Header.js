@@ -1,19 +1,10 @@
 import React, { useState } from "react";
 import "./Header.css";
 import SearchIcon from "@material-ui/icons/Search";
-import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import { Link } from "react-router-dom";
-import { useStateValue } from "./StateProvider";
-import {
-  getToken,
-  getRefreshToken,
-  getExpires,
-  clearLocalStorage,
-  getUser,
-} from "./Auth";
+import { getUser } from "./Auth";
 
 function Header() {
-  const [{ cart }, dispatch] = useStateValue();
   const [user, setUser] = useState(getUser());
 
   return (
@@ -26,19 +17,8 @@ function Header() {
             alt="logo"
           ></img>{" "}
         </Link>
-        <div className="headerSearchBar">
-          <input
-            className="headerSearchBarInput hide-mobile-input"
-            type="text"
-            placeholder="Browse items"
-          />
-          <button
-            className="headerSearchBarIcon hide-mobile-button"
-            onClick={console.log("clicked")}
-          >
-            <SearchIcon />
-          </button>
-        </div>
+        <div className="headerSearchBar">NoloNolo Plus</div>
+        {/* <div className="title">NoloNoloPlus</div> */}
         <div className="headerNav">
           <nav className="headerNavLinks onMobileHide">
             {user
@@ -63,12 +43,6 @@ function Header() {
               <div className="headerButton onMobileHide">Ordini</div>
             </Link>
           </nav>
-          <Link to="/checkout">
-            <div className="headerShoppingCart">
-              <ShoppingCartIcon />
-              <span className="headerShoppingCartNumber">{cart?.length}</span>
-            </div>
-          </Link>
         </div>
       </div>
       <div className="secondaryHeader">

@@ -12,7 +12,7 @@ export function getExpires() {
   return localStorage.getItem("expires");
 }
 
-function getUserId() {
+export function getUserId() {
   return localStorage.getItem("userId");
 }
 
@@ -57,6 +57,17 @@ export function updateLocalStorage(user) {
   localStorage.setItem("phone", user.phone);
 }
 
+//TODO: canche regiser route
+export async function createUser(user) {
+  return fetch(localhost + "/v1/users", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(user),
+  }).then((data) => data.json());
+}
+
 export async function loginUser(credentials) {
   return fetch(localhost + "/v1/auth/login", {
     method: "POST",
@@ -75,5 +86,14 @@ export async function updateProfile(user) {
       Authorization: "Bearer " + getToken(),
     },
     body: JSON.stringify(user),
+  }).then((data) => data.json());
+}
+
+export async function getItems() {
+  return fetch(localhost + "/v1/items", {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
   }).then((data) => data.json());
 }

@@ -1,14 +1,40 @@
 import React, { useState } from "react";
-import { updateLocalStorage, updateProfile, logout } from "./Auth";
+import {
+  updateLocalStorage,
+  createUser,
+  updateProfile,
+  logout,
+  getUserId,
+} from "./Auth";
 import "./Profile.css";
 
 function Profile() {
   const [username, setUsername] = useState(localStorage.getItem("username"));
+  const [password, setPassword] = useState(localStorage.getItem("password"));
   const [name, setName] = useState(localStorage.getItem("name"));
   const [surname, setSurname] = useState(localStorage.getItem("surname"));
   const [email, setEmail] = useState(localStorage.getItem("email"));
   const [phone, setPhone] = useState(localStorage.getItem("phone"));
   const [loyalty, setLoyalty] = useState(localStorage.getItem("loyalty"));
+  const id = getUserId();
+
+  async function registerUser() {
+    let user = {
+      username,
+      password,
+      name,
+      surname,
+      email,
+      phone,
+      role: "user",
+      loyalty: 0,
+    };
+
+    await createUser(user).then((res) => {
+      console.log(res);
+      window.location.href = "/";
+    });
+  }
 
   async function editUser() {
     let user = {
@@ -36,6 +62,20 @@ function Profile() {
         defaultValue={username}
         onChange={(e) => setUsername(e.target.value)}
       ></input>
+      {id
+        ? [null]
+        : [
+            <label htmlFor="Password" key="1">
+              Password
+            </label>,
+            <input
+              type="password"
+              id="Password"
+              className="userInfo"
+              onChange={(e) => setPassword(e.target.value)}
+              key="2"
+            ></input>,
+          ]}
       <div id="names">
         <label htmlFor="Name">Name</label>
         <label htmlFor="Surname">Surname</label>
@@ -69,17 +109,34 @@ function Profile() {
         defaultValue={phone}
         onChange={(e) => setPhone(e.target.value)}
       ></input>
-      <label htmlFor="Points">Loyalty Points</label>
-      <div id="Points" className="userInfo">
-        {loyalty}
-      </div>
+      {id
+        ? [
+            <label htmlFor="Points">Loyalty Points</label>,
+            <div id="Points" className="userInfo">
+              {loyalty}
+            </div>,
+          ]
+        : [null]}
       <div id="profileButtons">
-        <button type="button" id="update" onClick={editUser}>
-          Update Profile
-        </button>
-        <button type="button" id="logout" onClick={logout}>
-          Logout
-        </button>
+        {id
+          ? [
+              <button type="button" id="update" onClick={editUser} key="1">
+                Update Profile
+              </button>,
+              <button type="button" id="logout" onClick={logout} key="2">
+                Logout
+              </button>,
+            ]
+          : [
+              <button
+                type="button"
+                id="register"
+                onClick={registerUser}
+                key="3"
+              >
+                Register
+              </button>,
+            ]}
       </div>
     </div>
   );
