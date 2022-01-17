@@ -57,7 +57,6 @@ body::-webkit-scrollbar {
   display: flex;
   align-items: center;
   background-color: #131921;
-  padding: 0 0.5em;
 }
 
 .secondaryHeader {
@@ -69,75 +68,47 @@ body::-webkit-scrollbar {
 
 /* Logo */
 .headerLink {
-  width: 15%;
-  height: 100%;
+  width: 20% !important;
   display: flex;
   align-items: center;
-  justify-content: center;
+  margin: 0;
 }
 
 .headerLogo {
   width: 100%;
-  height: auto;
+  height: 100%;
+}
+
+.headerLogo:hover {
+  transform: scaleX(1.3);
+  transform: scaleY(1.1);
+}
+
+.headerLogo:active {
+  transform: translateY(4px);
 }
 
 @media (min-device-width: 481px) {
-  .headerLink {
-    width: 7% !important;
+  .headerLogo {
+    width: 40% !important;
   }
 }
 
-/* SearchBar */
-.headerSearchBar {
-  height: 2.5em;
+.title {
+  font-size: 2.5em;
+  color: #4ab5ac;
+  font-weight: bold;
+  font-family: cursive;
   display: flex;
+  align-items: center;
+  justify-content: center;
   flex: 1;
-  margin-left: 1em;
-  margin-right: 1em;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.headerSearchBarInput {
-  width: 100%;
-  border: none;
-  border-top-left-radius: 5px;
-  border-bottom-left-radius: 5px;
-  border: 1px solid #cd9042;
-  color: black;
-  padding-left: 0.5em;
-  font-size: 1.3em;
-}
-
-.headerSearchBarInput:focus {
-  outline: none;
-}
-
-.headerSearchBarIcon {
-  width: 20%;
-  height: 100%;
-  border: none;
-  display: flex;
-  overflow: hidden;
-  align-items: center;
-  justify-content: center;
-  color: #131921;
-  background-color: #cd9042;
-  border-top-right-radius: 5px;
-  border-bottom-right-radius: 5px;
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
-  position: absolute;
-  right: 0;
-  cursor: pointer;
-  margin: 0;
+  padding: 0 0.5em;
 }
 
 @media (min-device-width: 481px) {
-  .headerSearchBarIcon {
-    width: 8% !important;
+  .title {
+    font-size: 4em !important;
   }
 }
 
@@ -146,7 +117,8 @@ body::-webkit-scrollbar {
   height: 2.5em;
   display: flex;
   align-items: center !important;
-  margin-right: 1em;
+  justify-content: space-evenly;
+  width: 20%;
 }
 
 .headerNavLinks {
@@ -166,6 +138,7 @@ body::-webkit-scrollbar {
   font-size: 1.2em;
   margin: 0.3em;
   overflow: hidden;
+  text-decoration: none;
 }
 
 a {
@@ -178,15 +151,26 @@ a:visited {
   color: white;
 }
 
+@media (min-device-width: 481px) {
+  a {
+    font-size: 1.3em;
+  }
+}
+
 .spacePlease {
   margin: 0 2rem;
 }
 
-/* Cart */
-.headerShoppingCart {
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 0.5em 0 0.5em;
+.headerButton:hover {
+  transform: scaleX(1.3);
+  transform: scaleY(1.1);
+  color: #2877dd;
+}
+
+.headerButton:active {
+  transform: translateY(4px);
+}
+
+#profileUnderline {
+  text-decoration: underline !important;
 }

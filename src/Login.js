@@ -28,7 +28,7 @@ function Login() {
   return (
     <div className="login">
       <div className="loginContainer">
-        <h1>Sign-in</h1>
+        <h1>Welcome</h1>
         {failedLogin ? <h3>Email e/o Password errate. Riprova!</h3> : null}
         <form>
           <h5>E-mail</h5>
@@ -53,13 +53,13 @@ function Login() {
           >
             Sign In
           </button>
-        </form>
 
-        <Link to="/profile">
-          <div className="signButton" id="loginRegisterButton">
-            Create your Account
-          </div>
-        </Link>
+          <Link to="/profile">
+            <div className="signButton" id="loginRegisterButton">
+              Create your Account
+            </div>
+          </Link>
+        </form>
 
         <p>
           By signing-in you agree to our uber oppressive Conditions of Use &

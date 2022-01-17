@@ -1,3 +1,5 @@
+import React from "react";
+
 export const localhost = "https://192.168.1.9:8443";
 
 export function getToken() {
@@ -96,4 +98,34 @@ export async function getItems() {
       "Content-Type": "application/json",
     },
   }).then((data) => data.json());
+}
+
+export async function getCategories() {
+  return fetch(localhost + "/v1/items/categories", {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  }).then((data) => data.json());
+}
+
+export async function getBrands() {
+  return fetch(localhost + "/v1/items/brands", {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  }).then((data) => {
+    return data.json();
+  });
+}
+
+export async function getStates() {
+  const itemStates = {
+    Mint: "Nuovo",
+    SlightlyDamaged: "Qualche Imperfezione",
+    Damaged: "Danneggiato",
+    Broken: "Rotto",
+  };
+  return itemStates;
 }

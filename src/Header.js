@@ -15,25 +15,20 @@ function Header() {
             className="headerLogo"
             src="https://icons.veryicon.com/png/o/object/color-game-icon/game-controller-6.png"
             alt="logo"
-          ></img>{" "}
+          ></img>
         </Link>
-        <div className="headerSearchBar">NoloNolo Plus</div>
-        {/* <div className="title">NoloNoloPlus</div> */}
-        <div className="headerNav">
+        <div className="title">NoloNoloPlus</div>
+        <div className="headerNav onMobileHide">
           <nav className="headerNavLinks onMobileHide">
             {user
               ? [
                   <Link to="profile" key="1">
-                    <div href="#" className="headerButton onMobileHide">
-                      {user}
-                    </div>
+                    <div className="headerButton onMobileHide">{user}</div>
                   </Link>,
                 ]
               : [
                   <Link to="signIn" key="2">
-                    <div href="#" className="headerButton onMobileHide">
-                      Login
-                    </div>
+                    <div className="headerButton onMobileHide">Login</div>
                   </Link>,
                 ]}
             <Link to="/catalogue">
@@ -50,16 +45,17 @@ function Header() {
           {user
             ? [
                 <Link to="profile" key="1">
-                  <div href="#" className="headerButton spacePlease">
+                  <div
+                    className="headerButton spacePlease"
+                    id="profileUnderline"
+                  >
                     {user}
                   </div>
                 </Link>,
               ]
             : [
                 <Link to="signIn" key="2">
-                  <div href="#" className="headerButton spacePlease">
-                    Login
-                  </div>
+                  <div className="headerButton spacePlease">Login</div>
                 </Link>,
               ]}
           <Link to="/catalogue" className="headerButton">
