@@ -12,6 +12,11 @@ import {
   localhost,
 } from "./Auth";
 
+//A function that alerts the user that they need to be logged in to view more
+function loginNeeded() {
+  alert("You need to be logged in to view this page");
+}
+
 function card(item) {
   return (
     <div className="itemCard" key={item.id}>
@@ -20,7 +25,7 @@ function card(item) {
       </div>
       <div className="cardText">
         <h2>{item.name}</h2>
-        <p>{item.description}</p>
+        <p className="description">{item.description}</p>
         <p>
           <b>
             {item.basePrice}€ + {item.dailyPrice}€/day
@@ -31,7 +36,9 @@ function card(item) {
             <button className="moreButton">View More</button>
           </Link>
         ) : (
-          <button className="moreButton">Login to see more</button>
+          <button className="moreButton" onClick={loginNeeded}>
+            Login to see more
+          </button>
         )}
       </div>
     </div>
@@ -135,10 +142,11 @@ function Catalogue() {
   }
 
   function checkPrice(item) {
-    if (price === 0) {
+    console.log(price == 0);
+    if (price == 0) {
       return true;
     }
-    return item.basePrice + item.dailyPrice <= price;
+    return item.basePrice + item.dailyPrice <= parseInt(price);
   }
 
   async function retrieveItems() {
@@ -150,49 +158,49 @@ function Catalogue() {
   return (
     <div id="catalogue">
       <div id="catalogueContainer">
-        <div className="headerSearchBar">
+        <div className="searchBar">
           <input
-            className="headerSearchBarInput hide-mobile-input"
+            className="searchBarInput hide-mobile-input"
             type="text"
             placeholder="Browse items"
             onChange={(e) => setSearch(e.target.value)}
           />
-          <button className="headerSearchBarIcon hide-mobile-button">
+          <button className="searchBarIcon hide-mobile-button">
             <SearchIcon />
           </button>
         </div>
-        <div className="headerFiltersContainer">
-          <div className="headerFiltersCategory filter">
+        <div className="filtersContainer">
+          <div className="filtersCategory filter">
             <div className="selectLabel">Category</div>
             <select
-              className="headerFiltersCategory filter"
+              className="filtersCategory filter"
               onChange={(e) => setCategory(e.target.value)}
             >
               {categories}
             </select>
           </div>
-          <div className="headerFiltersBrand filter">
+          <div className="filtersBrand filter">
             <div className="selectLabel">Brand</div>
             <select
-              className="headerFiltersBrand"
+              className="filtersBrand"
               onChange={(e) => setBrand(e.target.value)}
             >
               {brands}
             </select>
           </div>
-          <div className="headerFiltersState filter">
+          <div className="filtersState filter">
             <div className="selectLabel">State</div>
             <select
-              className="headerFiltersStateSelect"
+              className="filtersStateSelect"
               onChange={(e) => setState(e.target.value)}
             >
               {states}
             </select>
           </div>
-          <div className="headerFiltersPrice filter">
+          <div className="filtersPrice filter">
             <div className="selectLabel">Max Price</div>
             <input
-              className="headerFiltersPriceInput filter price"
+              className="filtersPriceInput filter price"
               type="number"
               onChange={(e) => setPrice(e.target.value)}
             />

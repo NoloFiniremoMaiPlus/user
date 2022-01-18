@@ -75,8 +75,8 @@ body::-webkit-scrollbar {
 }
 
 .headerLogo {
+  padding-left: 15%;
   width: 100%;
-  height: 100%;
 }
 
 .headerLogo:hover {
@@ -90,7 +90,8 @@ body::-webkit-scrollbar {
 
 @media (min-device-width: 481px) {
   .headerLogo {
-    width: 40% !important;
+    width: 30% !important;
+    max-height: 100%;
   }
 }
 
