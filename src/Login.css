@@ -75,8 +75,9 @@ button:active {
 }
 
 #loginSignInButton {
-  background: #f0c14b;
-  border-color: #a88734 #9c7e31 #846a29;
+  background: #0e0d0d;
+  border-color: #0e0d0d;
+  color: white;
   margin-left: 0;
   margin-top: 1.5rem;
   font-size: 1.3em;

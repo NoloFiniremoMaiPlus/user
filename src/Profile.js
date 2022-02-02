@@ -1,22 +1,34 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   updateLocalStorage,
   createUser,
   updateProfile,
   logout,
   getUserId,
+  getUserById,
 } from "./Auth";
 import "./Profile.css";
 
 function Profile() {
-  const [username, setUsername] = useState(localStorage.getItem("username"));
-  const [password, setPassword] = useState(localStorage.getItem("password"));
-  const [name, setName] = useState(localStorage.getItem("name"));
-  const [surname, setSurname] = useState(localStorage.getItem("surname"));
-  const [email, setEmail] = useState(localStorage.getItem("email"));
-  const [phone, setPhone] = useState(localStorage.getItem("phone"));
-  const [loyalty, setLoyalty] = useState(localStorage.getItem("loyalty"));
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
+  const [surname, setSurname] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [loyalty, setLoyalty] = useState(0);
   const id = getUserId();
+
+  async function retrieveUser(id) {
+    let user = await getUserById(id);
+    setUsername(user.username);
+    setPassword(user.password);
+    setName(user.name);
+    setSurname(user.surname);
+    setEmail(user.email);
+    setPhone(user.phone);
+    setLoyalty(user.loyalty);
+  }
 
   async function registerUser() {
     let user = {
@@ -26,13 +38,15 @@ function Profile() {
       surname,
       email,
       phone,
-      role: "user",
-      loyalty: 0,
     };
 
     await createUser(user).then((res) => {
       console.log(res);
-      window.location.href = "/";
+      if (res.code) {
+        alert(res.message);
+      } else {
+        window.location.href = "/";
+      }
     });
   }
 
@@ -51,6 +65,10 @@ function Profile() {
       window.location.href = "/";
     });
   }
+
+  useEffect(() => {
+    retrieveUser(getUserId());
+  }, []);
 
   return (
     <div id="profileContainer">
@@ -77,8 +95,12 @@ function Profile() {
             ></input>,
           ]}
       <div id="names">
-        <label htmlFor="Name">Name</label>
-        <label htmlFor="Surname">Surname</label>
+        <label htmlFor="Name" key="0">
+          Nome
+        </label>
+        <label htmlFor="Surname" key="1">
+          Cognome
+        </label>
       </div>
       <div id="Anagraphic">
         <input
@@ -101,7 +123,7 @@ function Profile() {
         defaultValue={email}
         onChange={(e) => setEmail(e.target.value)}
       ></input>
-      <label htmlFor="Phone">Phone</label>
+      <label htmlFor="Phone">Telefono</label>
       <input
         type="text"
         id="Phone"
@@ -111,8 +133,10 @@ function Profile() {
       ></input>
       {id
         ? [
-            <label htmlFor="Points">Loyalty Points</label>,
-            <div id="Points" className="userInfo">
+            <label htmlFor="Points" key="0">
+              Punti Fedeltà
+            </label>,
+            <div id="Points" className="userInfo" key="1">
               {loyalty}
             </div>,
           ]
@@ -121,7 +145,7 @@ function Profile() {
         {id
           ? [
               <button type="button" id="update" onClick={editUser} key="1">
-                Update Profile
+                Aggiorna Profilo
               </button>,
               <button type="button" id="logout" onClick={logout} key="2">
                 Logout
@@ -134,7 +158,7 @@ function Profile() {
                 onClick={registerUser}
                 key="3"
               >
-                Register
+                Registrati
               </button>,
             ]}
       </div>

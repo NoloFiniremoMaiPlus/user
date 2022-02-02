@@ -1,0 +1,145 @@
+.wholeItemCard {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.itemContainer {
+  width: 90%;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 2rem;
+  box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.7);
+  margin: 2rem 0;
+}
+
+.itemRow {
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  justify-content: space-between;
+}
+
+h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.description {
+  font-size: 1.1rem;
+}
+
+.label {
+  margin: 0;
+  font-weight: bold;
+}
+
+img {
+  width: 90%;
+}
+
+@media (min-width: 481px) {
+  .itemContainer {
+    width: 50%;
+  }
+
+  .itemRow {
+    font-size: 1.5rem;
+  }
+
+  .description {
+    font-size: 1.5rem;
+  }
+}
+
+.dates {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.datePicker {
+  margin: 1rem;
+  border-radius: 1rem;
+  border: 1px solid black;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.dateLabel {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 0;
+  margin-top: 2rem;
+}
+
+.loyaltyLabel {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 0;
+  margin-top: 2rem;
+}
+
+.loyaltyInput {
+  margin: 1rem;
+  border-radius: 1rem;
+  border: 1px solid black;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding: 0;
+}
+
+/* Chrome, Safari, Edge, Opera */
+.loyaltyInput::-webkit-outer-spin-button,
+.loyaltyInput::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+.loyaltyInput[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.estimateBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  flex-wrap: wrap;
+  font-weight: bold;
+}
+
+span {
+  font-weight: normal;
+}
+
+.estimateBlock p {
+  font-size: 1.5rem;
+  margin-top: 3rem;
+  margin-bottom: 0;
+}
+
+.button {
+  margin: 2.5rem;
+}
+
+.discounts {
+  margin-bottom: 1rem;
+}

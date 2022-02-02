@@ -1,6 +1,19 @@
-import React from "react";
-
 export const localhost = "https://192.168.1.9:8443";
+
+export const status = {
+  Mint: "Perfette Condizioni",
+  SlightlyDamaged: "Lievemente Danneggiato",
+  Damaged: "Danneggiato",
+  Broken: "Rotto",
+};
+
+export const rentStatus = {
+  Booked: "Prenotato",
+  Accepted: "Accettato",
+  Ongoing: "In Corso",
+  Expired: "Scaduto",
+  Returned: "Restituito",
+};
 
 export function getToken() {
   return localStorage.getItem("token");
@@ -59,9 +72,8 @@ export function updateLocalStorage(user) {
   localStorage.setItem("phone", user.phone);
 }
 
-//TODO: canche regiser route
 export async function createUser(user) {
-  return fetch(localhost + "/v1/users", {
+  return fetch(localhost + "/v1/auth/register", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -91,13 +103,49 @@ export async function updateProfile(user) {
   }).then((data) => data.json());
 }
 
-export async function getItems() {
-  return fetch(localhost + "/v1/items", {
+export async function getItem(par) {
+  let id = par.id;
+  return fetch(localhost + "/v1/items/" + id, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
+      Authorization: "Bearer " + getToken(),
     },
   }).then((data) => data.json());
+}
+
+export async function getUserById(id) {
+  return fetch(localhost + "/v1/users/" + id, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + getToken(),
+    },
+  }).then((data) => data.json());
+}
+
+export async function getItems() {
+  return fetch(localhost + "/v1/items?sortBy=totalPrice:asc&enabled=true", {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + getToken(),
+    },
+  }).then((data) => data.json());
+}
+
+export async function searchBestItem(category) {
+  return fetch(
+    localhost +
+      `/v1/items?sortBy=totalPrice:asc&category=${category}&limit=1&enabled=true`,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + getToken(),
+      },
+    }
+  ).then((data) => data.json());
 }
 
 export async function getCategories() {
@@ -128,4 +176,42 @@ export async function getStates() {
     Broken: "Rotto",
   };
   return itemStates;
+}
+
+export async function getOrders(user) {
+  return fetch(localhost + "/v1/rentals?sortBy=state:asc&user=" + user, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + getToken(),
+    },
+  }).then((data) => data.json());
+}
+
+export async function deleteOrder(id) {
+  console.log(id);
+  return fetch(localhost + "/v1/rentals/" + id, {
+    method: "DELETE",
+    headers: {
+      Authorization: "Bearer " + getToken(),
+    },
+  });
+}
+
+export async function postRental(item, from, to, loyalty, estimate) {
+  return fetch(localhost + "/v1/rentals", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + getToken(),
+    },
+    body: JSON.stringify({
+      user: getUserId(),
+      item: item,
+      from: from,
+      to: to,
+      loyalty: loyalty,
+      estimate: estimate,
+    }),
+  }).then((data) => data.json());
 }

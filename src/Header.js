@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import "./Header.css";
-import SearchIcon from "@material-ui/icons/Search";
 import { Link } from "react-router-dom";
 import { getUser } from "./Auth";
 
+function loginRequired() {
+  alert("Devi essere loggato per vedere gli ordini");
+}
+
 function Header() {
-  const [user, setUser] = useState(getUser());
+  const [user] = useState(getUser());
 
   return (
     <div className="header">
@@ -34,9 +37,17 @@ function Header() {
             <Link to="/catalogue">
               <div className="headerButton onMobileHide">Catalogo</div>
             </Link>
-            <Link to="/orders">
-              <div className="headerButton onMobileHide">Ordini</div>
-            </Link>
+            {user
+              ? [
+                  <Link to="/orders" key="1">
+                    <div className="headerButton onMobileHide">Ordini</div>
+                  </Link>,
+                ]
+              : [
+                  <Link to="/" key="2" onClick={loginRequired}>
+                    <div className="headerButton onMobileHide">Ordini</div>
+                  </Link>,
+                ]}
           </nav>
         </div>
       </div>
@@ -54,16 +65,29 @@ function Header() {
                 </Link>,
               ]
             : [
-                <Link to="signIn" key="2">
-                  <div className="headerButton spacePlease">Login</div>
+                <Link to="signIn" className="headerButton spacePlease" key="2">
+                  <div>Login</div>
                 </Link>,
               ]}
-          <Link to="/catalogue" className="headerButton">
+          <Link to="/catalogue" className="headerButton spacePlease">
             Catalogo
           </Link>
-          <Link to="/orders" className="headerButton spacePlease">
-            Ordini
-          </Link>
+          {user
+            ? [
+                <Link to="/orders" className="headerButton spacePlease" key="1">
+                  <div>Ordini</div>
+                </Link>,
+              ]
+            : [
+                <Link
+                  to="/"
+                  className="headerButton spacePlease"
+                  key="2"
+                  onClick={loginRequired}
+                >
+                  <div>Ordini</div>
+                </Link>,
+              ]}
         </nav>
       </div>
     </div>

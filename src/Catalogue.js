@@ -9,7 +9,7 @@ import {
   getBrands,
   getStates,
   getUserId,
-  localhost,
+  searchBestItem,
 } from "./Auth";
 
 //A function that alerts the user that they need to be logged in to view more
@@ -18,6 +18,7 @@ function loginNeeded() {
 }
 
 function card(item) {
+  let id = item.id;
   return (
     <div className="itemCard" key={item.id}>
       <div className="cardImage">
@@ -32,12 +33,12 @@ function card(item) {
           </b>
         </p>
         {getUserId() ? (
-          <Link to={{ localhost } + "/item/${item.id}`"}>
+          <Link to={`/item/${id}`} key="0">
             <button className="moreButton">View More</button>
           </Link>
         ) : (
-          <button className="moreButton" onClick={loginNeeded}>
-            Login to see more
+          <button className="moreButton" onClick={loginNeeded} key="1">
+            Login per vedere di più
           </button>
         )}
       </div>
@@ -45,18 +46,9 @@ function card(item) {
   );
 }
 
-async function appendCategories() {
-  const response = await getCategories();
-  let categories = response.results;
-  return categories.map((category) => (
-    <option key={category} value={category}>
-      {category}
-    </option>
-  ));
-}
-
 function Catalogue() {
   const [items, setItems] = useState([]);
+  const [singleItem, setSingleItem] = useState(null);
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("");
   const [brand, setBrand] = useState("");
@@ -66,8 +58,8 @@ function Catalogue() {
   const [states, setStates] = useState([]);
   const [price, setPrice] = useState(0);
 
-  useEffect(() => {
-    retrieveItems();
+  function loggedUserCatalogue() {
+    retrieveItems(getUserId());
 
     getCategories().then((response) => {
       let html = [<option key="" value=""></option>];
@@ -102,6 +94,33 @@ function Catalogue() {
       }
       setStates(html);
     });
+  }
+
+  async function searchItem() {
+    let item = await searchBestItem(category);
+    setSingleItem(item.results[0]);
+  }
+
+  function loadCategories() {
+    getCategories().then((response) => {
+      let html = [];
+      setCategory(response[0]);
+      for (let category of response) {
+        html.push(
+          <option key={response.indexOf(category)} value={String(category)}>
+            {String(category)}
+          </option>
+        );
+      }
+      setCategories(html);
+    });
+  }
+
+  useEffect(() => {
+    if (getUserId()) loggedUserCatalogue();
+    else {
+      loadCategories();
+    }
   }, []);
 
   function checkItemName(item) {
@@ -116,8 +135,13 @@ function Catalogue() {
       checkCategory(item) &&
       checkBrand(item) &&
       checkState(item) &&
-      checkPrice(item)
+      checkPrice(item) &&
+      checkEnabled(item)
     );
+  }
+
+  function checkEnabled(item) {
+    return item.enabled;
   }
 
   function checkCategory(item) {
@@ -142,8 +166,7 @@ function Catalogue() {
   }
 
   function checkPrice(item) {
-    console.log(price == 0);
-    if (price == 0) {
+    if (price === 0) {
       return true;
     }
     return item.basePrice + item.dailyPrice <= parseInt(price);
@@ -162,7 +185,7 @@ function Catalogue() {
           <input
             className="searchBarInput hide-mobile-input"
             type="text"
-            placeholder="Browse items"
+            placeholder="Filtra oggetti"
             onChange={(e) => setSearch(e.target.value)}
           />
           <button className="searchBarIcon hide-mobile-button">
@@ -171,7 +194,7 @@ function Catalogue() {
         </div>
         <div className="filtersContainer">
           <div className="filtersCategory filter">
-            <div className="selectLabel">Category</div>
+            <div className="selectLabel">Categoria</div>
             <select
               className="filtersCategory filter"
               onChange={(e) => setCategory(e.target.value)}
@@ -179,38 +202,66 @@ function Catalogue() {
               {categories}
             </select>
           </div>
-          <div className="filtersBrand filter">
-            <div className="selectLabel">Brand</div>
-            <select
-              className="filtersBrand"
-              onChange={(e) => setBrand(e.target.value)}
-            >
-              {brands}
-            </select>
+          {getUserId()
+            ? [
+                <div className="filtersBrand filter" key="0">
+                  <div className="selectLabel">Brand</div>
+                  <select
+                    className="filtersBrand"
+                    onChange={(e) => setBrand(e.target.value)}
+                  >
+                    {brands}
+                  </select>
+                </div>,
+              ]
+            : null}
+          {getUserId()
+            ? [
+                <div className="filtersState filter" key="1">
+                  <div className="selectLabel">Stato</div>
+                  <select
+                    className="filtersStateSelect"
+                    onChange={(e) => setState(e.target.value)}
+                  >
+                    {states}
+                  </select>
+                </div>,
+              ]
+            : null}
+          {getUserId()
+            ? [
+                <div className="filtersPrice filter" key="2">
+                  <div className="selectLabel">Prezzo Massimo</div>
+                  <input
+                    className="filtersPriceInput filter price"
+                    type="number"
+                    onChange={(e) => setPrice(e.target.value)}
+                  />
+                </div>,
+              ]
+            : null}
+          <div id="catalogueProducts">
+            {items.length > 0 ? (
+              [
+                items.map((item) =>
+                  checkItemName(item) && checkItemFilters(item)
+                    ? card(item)
+                    : null
+                ),
+              ]
+            ) : singleItem ? (
+              <div className="catalogueItem">
+                {card(singleItem)}
+                <button id="searchButton" onClick={searchItem} key="3">
+                  Cerca miglior offerta
+                </button>
+              </div>
+            ) : (
+              <button id="searchButton" onClick={searchItem} key="3">
+                Cerca miglior offerta
+              </button>
+            )}
           </div>
-          <div className="filtersState filter">
-            <div className="selectLabel">State</div>
-            <select
-              className="filtersStateSelect"
-              onChange={(e) => setState(e.target.value)}
-            >
-              {states}
-            </select>
-          </div>
-          <div className="filtersPrice filter">
-            <div className="selectLabel">Max Price</div>
-            <input
-              className="filtersPriceInput filter price"
-              type="number"
-              onChange={(e) => setPrice(e.target.value)}
-            />
-          </div>
-        </div>
-
-        <div id="catalogueProducts">
-          {items.map((item) =>
-            checkItemName(item) && checkItemFilters(item) ? card(item) : null
-          )}
         </div>
       </div>
     </div>

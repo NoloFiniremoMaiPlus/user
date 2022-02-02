@@ -28,7 +28,7 @@ function Login() {
   return (
     <div className="login">
       <div className="loginContainer">
-        <h1>Welcome</h1>
+        <h1>Benvenuto</h1>
         {failedLogin ? <h3>Email e/o Password errate. Riprova!</h3> : null}
         <form>
           <h5>E-mail</h5>
@@ -51,20 +51,20 @@ function Login() {
             id="loginSignInButton"
             onClick={handleSubmit}
           >
-            Sign In
+            Log In
           </button>
 
           <Link to="/profile">
             <div className="signButton" id="loginRegisterButton">
-              Create your Account
+              Crea un account
             </div>
           </Link>
         </form>
 
         <p>
-          By signing-in you agree to our uber oppressive Conditions of Use &
-          Sale. Please see our Privacy Notice, because after you sign there's no
-          way back.
+          Registrandoti accetti la nostra politica aziendale, totalmente
+          invasiva e che non mette l'utente al primo posto. Attenzione, una
+          volta registrato non puoi più tornare indietro.
         </p>
       </div>
     </div>

@@ -133,10 +133,21 @@ select {
   justify-content: space-evenly;
   margin: 0 auto;
   padding: 1rem;
+  width: 100%;
+}
+
+.catalogueItem {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  padding: 1rem;
+  width: 100%;
 }
 
 .itemCard {
-  width: 43%;
+  width: 85%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -150,13 +161,20 @@ select {
 
 @media (min-device-width: 481px) {
   .itemCard {
-    width: 27%;
+    width: 29%;
   }
 }
 
 .cardImage {
   width: 100%;
   border-radius: inherit;
+}
+
+.cardText {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 img {
@@ -175,7 +193,7 @@ img {
 }
 
 .moreButton {
-  width: 90%;
+  width: max-content;
   font-size: 1.1em;
   display: flex;
   justify-content: center;
@@ -186,4 +204,16 @@ img {
   .moreButton {
     font-size: 0.9em;
   }
+}
+
+#searchButton {
+  width: fit-content;
+  height: 2em;
+  border: 2px solid black;
+  border-radius: 0.5rem;
+  background-color: #e48d29;
+  color: black;
+  font-size: 1.3em;
+  text-align: center;
+  margin-top: 5rem;
 }
