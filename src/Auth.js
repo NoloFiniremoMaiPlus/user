@@ -1,4 +1,4 @@
-export const localhost = "https://192.168.1.9:8443";
+export const localhost = "https://site202132.tw.cs.unibo.it";
 
 export const status = {
   Mint: "Perfette Condizioni",
