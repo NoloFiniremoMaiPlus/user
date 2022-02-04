@@ -181,17 +181,21 @@ function Catalogue() {
   return (
     <div id="catalogue">
       <div id="catalogueContainer">
-        <div className="searchBar">
-          <input
-            className="searchBarInput hide-mobile-input"
-            type="text"
-            placeholder="Filtra oggetti"
-            onChange={(e) => setSearch(e.target.value)}
-          />
-          <button className="searchBarIcon hide-mobile-button">
-            <SearchIcon />
-          </button>
-        </div>
+        {getUserId()
+          ? [
+              <div className="searchBar">
+              <input
+                className="searchBarInput hide-mobile-input"
+                type="text"
+                placeholder="Filtra oggetti"
+                onChange={(e) => setSearch(e.target.value)}
+              />
+              <button className="searchBarIcon hide-mobile-button">
+                <SearchIcon />
+              </button>
+              </div>
+            ]
+          : null}
         <div className="filtersContainer">
           <div className="filtersCategory filter">
             <div className="selectLabel">Categoria</div>
