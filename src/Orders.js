@@ -26,7 +26,7 @@ function Orders() {
 
   async function removeOrder(id) {
     await deleteOrder(id);
-    window.location.href = "/orders";
+    window.location.href = "/";
   }
 
   function invoiceCard(order) {

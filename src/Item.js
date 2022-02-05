@@ -61,7 +61,7 @@ function Item() {
       setEstimated(true);
       setBasePrice(estimate.base);
       setTotalPrice(estimate.total);
-      setTotalDiscount(estimate.base - estimate.total - loyalty);
+      setTotalDiscount(Math.max(estimate.base - estimate.total - loyalty, 0));
     }
   }
 
@@ -74,7 +74,6 @@ function Item() {
   useEffect(() => {
     let id = getUserId();
     retrieveLoyalty(id);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     retrieveItem(id);
   }, []);
 
