@@ -14,7 +14,7 @@ import {
 
 //A function that alerts the user that they need to be logged in to view more
 function loginNeeded() {
-  alert("You need to be logged in to view this page");
+  alert("Devi essere loggato per vedere questa pagina");
 }
 
 function card(item) {
@@ -181,17 +181,22 @@ function Catalogue() {
   return (
     <div id="catalogue">
       <div id="catalogueContainer">
-        <div className="searchBar">
-          <input
-            className="searchBarInput hide-mobile-input"
-            type="text"
-            placeholder="Filtra oggetti"
-            onChange={(e) => setSearch(e.target.value)}
-          />
-          <button className="searchBarIcon hide-mobile-button">
-            <SearchIcon />
-          </button>
-        </div>
+        {getUserId()
+          ? [
+              <div className="searchBar">
+                <input
+                  className="searchBarInput hide-mobile-input"
+                  type="text"
+                  placeholder="Filtra oggetti"
+                  onChange={(e) => setSearch(e.target.value)}
+                />
+                <button className="searchBarIcon hide-mobile-button">
+                  <SearchIcon />
+                </button>
+              </div>,
+            ]
+          : null}
+
         <div className="filtersContainer">
           <div className="filtersCategory filter">
             <div className="selectLabel">Categoria</div>
