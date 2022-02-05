@@ -3,6 +3,7 @@ import { getItem, getUserId, getUserById, status, postRental } from "./Auth";
 import "./Item.css";
 import DatePicker from "react-datepicker/dist/react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { useParams } from "react-router-dom";
 
 function getTomorrowDate() {
   let date = new Date();
@@ -20,6 +21,8 @@ function Item() {
   const [totalDiscount, setTotalDiscount] = useState(0);
   const [loyalty, setLoyalty] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
+  
+  const {id} = useParams();
 
   async function retrieveItem(id) {
     let gotItem = await getItem(id);
@@ -72,8 +75,8 @@ function Item() {
   }
 
   useEffect(() => {
-    let id = getUserId();
-    retrieveLoyalty(id);
+    let userID = getUserId();
+    retrieveLoyalty(userID);
     // eslint-disable-next-line react-hooks/exhaustive-deps
     retrieveItem(id);
   }, []);

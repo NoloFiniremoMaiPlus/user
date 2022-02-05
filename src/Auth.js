@@ -103,8 +103,7 @@ export async function updateProfile(user) {
   }).then((data) => data.json());
 }
 
-export async function getItem(par) {
-  let id = par.id;
+export async function getItem(id) {
   return fetch(localhost + "/v1/items/" + id, {
     method: "GET",
     headers: {
