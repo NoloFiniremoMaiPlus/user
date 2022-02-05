@@ -166,7 +166,7 @@ function Catalogue() {
   }
 
   function checkPrice(item) {
-    if (price === 0) {
+    if (price === 0 || price === "") {
       return true;
     }
     return item.basePrice + item.dailyPrice <= parseInt(price);
@@ -183,7 +183,7 @@ function Catalogue() {
       <div id="catalogueContainer">
         {getUserId()
           ? [
-              <div className="searchBar">
+              <div className="searchBar" key="searchBar">
                 <input
                   className="searchBarInput hide-mobile-input"
                   type="text"
@@ -239,7 +239,9 @@ function Catalogue() {
                   <input
                     className="filtersPriceInput filter price"
                     type="number"
-                    onChange={(e) => setPrice(e.target.value)}
+                    onChange={(e) => {
+                      setPrice(e.target.value);
+                    }}
                   />
                 </div>,
               ]
@@ -261,7 +263,7 @@ function Catalogue() {
                 </button>
               </div>
             ) : (
-              <button id="searchButton" onClick={searchItem} key="3">
+              <button id="searchButton" onClick={searchItem} key="4">
                 Cerca miglior offerta
               </button>
             )}
