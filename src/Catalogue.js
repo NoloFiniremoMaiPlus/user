@@ -196,7 +196,6 @@ function Catalogue() {
               </div>,
             ]
           : null}
-
         <div className="filtersContainer">
           <div className="filtersCategory filter">
             <div className="selectLabel">Categoria</div>
