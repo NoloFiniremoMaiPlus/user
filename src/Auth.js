@@ -198,6 +198,8 @@ export async function deleteOrder(id) {
 }
 
 export async function postRental(item, from, to, loyalty, estimate) {
+  from = from.toISOString().substring(0, 10);
+  to = to.toISOString().substring(0, 10);
   return fetch(localhost + "/v1/rentals", {
     method: "POST",
     headers: {
