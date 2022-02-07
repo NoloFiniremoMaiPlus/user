@@ -53,6 +53,7 @@ function Profile() {
   async function editUser() {
     let user = {
       username,
+      password,
       name,
       surname,
       email,
@@ -60,7 +61,6 @@ function Profile() {
     };
 
     await updateProfile(user).then((res) => {
-      console.log(res);
       updateLocalStorage(res);
       window.location.href = "/";
     });
@@ -80,20 +80,16 @@ function Profile() {
         defaultValue={username}
         onChange={(e) => setUsername(e.target.value)}
       ></input>
-      {id
-        ? [null]
-        : [
-            <label htmlFor="Password" key="1">
-              Password
-            </label>,
-            <input
-              type="password"
-              id="Password"
-              className="userInfo"
-              onChange={(e) => setPassword(e.target.value)}
-              key="2"
-            ></input>,
-          ]}
+      <label htmlFor="Password" key="1">
+        Password
+      </label>
+      <input
+        type="password"
+        id="Password"
+        className="userInfo"
+        onChange={(e) => setPassword(e.target.value)}
+        key="2"
+      ></input>
       <div id="names">
         <label htmlFor="Name" key="0">
           Nome
