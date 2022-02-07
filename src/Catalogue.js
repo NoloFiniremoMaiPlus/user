@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import "./Catalogue.css";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
-import SearchIcon from "@material-ui/icons/Search";
 import {
   getCategories,
   getItems,
@@ -190,9 +189,6 @@ function Catalogue() {
                   placeholder="Filtra oggetti"
                   onChange={(e) => setSearch(e.target.value)}
                 />
-                <button className="searchBarIcon hide-mobile-button">
-                  <SearchIcon />
-                </button>
               </div>,
             ]
           : null}
