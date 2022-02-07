@@ -69,9 +69,8 @@ function Item() {
   }
 
   async function sendRental() {
-    await postRental(item.id, startDate, endDate, loyalty, false).then(
-      (window.location.href = "/")
-    );
+    await postRental(item.id, startDate, endDate, loyalty, false);
+    window.location.href = "/";
   }
 
   useEffect(() => {
