@@ -106,10 +106,12 @@ function Item() {
               {item.basePrice}€ + {item.dailyPrice}€/giorno
             </p>
           </div>
-          <div className="itemRow">
-            <p className="label">Sconto:</p>
-            <p>{item.discount}%</p>
-          </div>
+          {item.discount > 0 ?
+            <div className="itemRow">
+              <p className="label">Sconto:</p>
+              <p>{item.discount}%</p>
+            </div>
+          : ""}
         </div>
         <div id="datesContainer" className="dates">
           <div className="datesRow">
