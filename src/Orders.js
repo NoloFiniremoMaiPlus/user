@@ -16,7 +16,7 @@ function parseDate(date) {
 }
 
 function getTotalDiscount(order) {
-  return order.base - order.total - order.loyalty;
+  return order.base - order.total;
 }
 
 function Orders() {

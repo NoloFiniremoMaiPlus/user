@@ -64,7 +64,7 @@ function Item() {
       setEstimated(true);
       setBasePrice(estimate.base);
       setTotalPrice(estimate.total);
-      setTotalDiscount(Math.max(estimate.base - estimate.total - loyalty, 0));
+      setTotalDiscount(Math.max(estimate.base - estimate.total, 0));
     }
   }
 
