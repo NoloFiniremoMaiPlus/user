@@ -17,13 +17,17 @@
   width: 100%;
 }
 
+.orderCard-header::-webkit-scrollbar {
+  display: none;
+}
+
 .orderCard-header {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  flex-wrap: wrap;
+  overflow: scroll;
   border-bottom: 2px solid black;
   margin-bottom: 1em;
   color: rgb(226, 185, 52);
@@ -74,7 +78,13 @@ h3 {
 
 @media (min-device-width: 481px) {
   .orderCard {
-    width: 27%;
+    width: 42%;
+  }
+}
+
+@media (min-device-width: 800px) {
+  .orderCard {
+    width: 33%;
   }
 }
 
@@ -82,6 +92,7 @@ h3 {
   display: flex;
   width: 94%;
   justify-content: space-between;
+  align-items: center;
   margin: 0 0.5em;
 }
 

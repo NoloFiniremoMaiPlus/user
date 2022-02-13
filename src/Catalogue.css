@@ -48,9 +48,11 @@
   .searchBar {
     width: 50%;
   }
+}
 
-  .searchBarIcon {
-    width: 10%;
+@media (min-device-width: 800px) {
+  .searchBar {
+    width: 70%;
   }
 }
 

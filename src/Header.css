@@ -4,7 +4,7 @@ body::-webkit-scrollbar {
 }
 
 /* Change header on mobile device */
-@media (max-device-width: 480px) {
+@media (max-device-width: 1000px) {
   .onMobileHide {
     display: none !important;
   }
@@ -23,7 +23,7 @@ body::-webkit-scrollbar {
   }
 }
 
-@media (min-device-width: 481px) {
+@media (min-device-width: 1000px) {
   .onComputerHide {
     display: none !important;
   }
@@ -62,13 +62,14 @@ body::-webkit-scrollbar {
 .secondaryHeader {
   width: 100%;
   display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: space-evenly;
 }
 
 /* Logo */
 .headerLink {
-  width: 20% !important;
+  width: 25% !important;
   display: flex;
   align-items: center;
   margin: 0;
@@ -88,9 +89,9 @@ body::-webkit-scrollbar {
   transform: translateY(4px);
 }
 
-@media (min-device-width: 481px) {
+@media (min-device-width: 1000px) {
   .headerLogo {
-    width: 30% !important;
+    width: 25% !important;
     max-height: 100%;
   }
 }
@@ -104,10 +105,15 @@ body::-webkit-scrollbar {
   align-items: center;
   justify-content: center;
   flex: 1;
-  padding: 0 0.5em;
 }
 
-@media (min-device-width: 481px) {
+@media (min-device-width: 500px) {
+  .title {
+    font-size: 5em !important;
+  }
+}
+
+@media (min-device-width: 1000px) {
   .title {
     font-size: 4em !important;
   }
@@ -118,15 +124,16 @@ body::-webkit-scrollbar {
   height: 2.5em;
   display: flex;
   align-items: center !important;
-  justify-content: space-evenly;
-  width: 20%;
+  width: 25%;
 }
 
 .headerNavLinks {
+  width: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-evenly;
   padding-bottom: 0.2em;
+  overflow: scroll;
 }
 
 .headerButton {
@@ -136,10 +143,22 @@ body::-webkit-scrollbar {
   overflow: hidden;
   color: white;
   font-weight: bold;
-  font-size: 1.2em;
-  margin: 0.3em;
+  font-size: 1.5em;
+  margin: 0.1em;
   overflow: hidden;
   text-decoration: none;
+}
+
+@media (min-device-width: 481px) {
+  .headerButton {
+    font-size: 2em;
+  }
+}
+
+@media (min-device-width: 800px) {
+  .headerButton {
+    font-size: 2.6em;
+  }
 }
 
 a {
@@ -152,14 +171,8 @@ a:visited {
   color: white;
 }
 
-@media (min-device-width: 481px) {
-  a {
-    font-size: 1.3em;
-  }
-}
-
 .spacePlease {
-  margin: 0 2rem;
+  margin: 0 1rem;
 }
 
 .headerButton:hover {
