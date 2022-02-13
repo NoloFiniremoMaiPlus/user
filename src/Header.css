@@ -127,6 +127,10 @@ body::-webkit-scrollbar {
   width: 25%;
 }
 
+.headerNavLinks::-webkit-scrollbar {
+  display: none;
+}
+
 .headerNavLinks {
   width: 100%;
   display: flex;
