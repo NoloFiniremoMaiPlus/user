@@ -69,6 +69,12 @@ function Item() {
   }
 
   async function sendRental() {
+    if (endDate < startDate) {
+      alert(
+        "La data di fine noleggio non può essere precedente alla data di inizio noleggio"
+      );
+      return;
+    }
     await postRental(item.id, startDate, endDate, loyalty, false);
     window.location.href = "/";
   }
@@ -106,12 +112,14 @@ function Item() {
               {item.basePrice}€ + {item.dailyPrice}€/giorno
             </p>
           </div>
-          {item.discount > 0 ?
+          {item.discount > 0 ? (
             <div className="itemRow">
               <p className="label">Sconto:</p>
               <p>{item.discount}%</p>
             </div>
-          : ""}
+          ) : (
+            ""
+          )}
         </div>
         <div id="datesContainer" className="dates">
           <div className="datesRow">
@@ -131,7 +139,7 @@ function Item() {
               selected={startDate}
               excludeDates={unavaiableDates}
               popperPlacement="bottom"
-              disabled={estimated ? true : false}
+              // disabled={estimated ? true : false}
             />
           </div>
           <div className="datesRow">
@@ -146,7 +154,7 @@ function Item() {
               selected={endDate}
               excludeDates={unavaiableDates}
               popperPlacement="bottom"
-              disabled={estimated ? true : false}
+              // disabled={estimated ? true : false}
             />
           </div>
         </div>
@@ -157,7 +165,7 @@ function Item() {
             id="loyalty"
             className="loyaltyInput"
             onChange={(e) => setLoyalty(e.target.value)}
-            disabled={estimated ? true : false}
+            // disabled={estimated ? true : false}
             value={loyalty}
             min="0"
             max={loyalty}
@@ -188,21 +196,22 @@ function Item() {
                 </button>
               </div>,
             ]
-          : [
-              <button
-                key="2"
-                className="button"
-                onClick={() => {
-                  showEstimate(item, startDate, endDate);
-                }}
-              >
-                Preventivo
-              </button>,
-            ]}
+          : null}
+        <button
+          key="2"
+          className="button"
+          onClick={() => {
+            showEstimate(item, startDate, endDate);
+          }}
+        >
+          Preventivo
+        </button>
       </div>,
     ]
   ) : (
-    <div key="2">Caricamento...</div>
+    <div>
+      <h1>Caricamento...</h1>
+    </div>
   );
 }
 
