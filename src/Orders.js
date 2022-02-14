@@ -16,7 +16,7 @@ function parseDate(date) {
 }
 
 function getTotalDiscount(order) {
-  return order.base - order.total;
+  return (order.base - order.total + order.surcharge).toFixed(2);
 }
 
 function Orders() {
@@ -153,33 +153,36 @@ function Orders() {
                 <label htmlFor="state">Stato Noleggio:</label>
                 <div>{rentStatus[order.state]}</div>
               </div>
-              {order.state === "Booked"
-                ? [
-                    <button
-                      className="cancelButton"
-                      onClick={() => {
-                        removeOrder(order.id);
-                      }}
-                      key="1"
-                    >
-                      Cancel Order
-                    </button>,
-                  ]
-                : null}
-              {order.state === "Returned"
-                ? [
-                    <button
-                      className="invoiceButton"
-                      onClick={() => {
-                        setShowInvoice(true);
-                        setShowedOrder(order);
-                      }}
-                      key="1"
-                    >
-                      Get invoice
-                    </button>,
-                  ]
-                : null}
+              {order.state === "Returned" ? (
+                [
+                  <button
+                    className="invoiceButton"
+                    onClick={() => {
+                      setShowInvoice(true);
+                      setShowedOrder(order);
+                    }}
+                    key="1"
+                  >
+                    Visualizza Fattura
+                  </button>,
+                ]
+              ) : order.state === "Booked" ? (
+                [
+                  <button
+                    className="cancelButton"
+                    onClick={() => {
+                      removeOrder(order.id);
+                    }}
+                    key="1"
+                  >
+                    Cancella Ordine
+                  </button>,
+                ]
+              ) : (
+                <button className="duringButton" key="1">
+                  In Corso
+                </button>
+              )}
             </div>
           </div>,
         ]
